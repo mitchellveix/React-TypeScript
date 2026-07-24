@@ -1,75 +1,116 @@
-# React + TypeScript + Vite
+# AI Chatbot
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A chatbot built with **React**, **TypeScript**, and **Vite** as part of my journey to learn modern front-end development. This project is being developed step by step while learning TypeScript fundamentals, React best practices, and API integration.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The goal of this project is to build a professional portfolio chatbot that can answer questions about my background, skills, and projects. The application starts as a simple rule-based chatbot and will eventually integrate with an AI model through a backend API.
 
-## React Compiler
+This project serves as both a learning exercise and a portfolio piece, demonstrating modern React development using TypeScript.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Planned Features
 
-## Expanding the ESLint configuration
+* AI-powered responses
+* Backend API integration
+* Typing indicator
+* Auto-scrolling conversation
+* Markdown support
+* Conversation history saved locally
+* Dark mode
+* Mobile-friendly design
+* Accessibility improvements
+* Unit testing
+* Deployment to Vercel
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Technologies
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+* React
+* TypeScript
+* Vite
+* CSS
+* JavaScript (ES6+)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Planned Technologies
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+* REST APIs
+* Node.js
+* Express
+* OpenAI API (or compatible LLM)
+* Local Storage
+* GitHub Actions (optional)
 
+## Project Structure
+
+```text
+src/
+├── components/
+│   └── ChatWindow.tsx
+├── services/
+│   └── chatbot.ts
+├── types/
+│   └── chat.ts
+├── App.tsx
+├── App.css
+├── index.css
+└── main.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Clone the repository
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+git clone https://github.com/mitchellveix/portfolio-chatbot.git
 ```
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Start the development server
+
+```bash
+npm run dev
+```
+
+Open your browser and navigate to:
+
+```text
+http://localhost:5173
+```
+
+## What I'm Learning
+
+This project is helping me gain hands-on experience with:
+
+* TypeScript fundamentals
+* React Hooks
+* Component architecture
+* State management
+* Event handling
+* Interfaces and custom types
+* API integration
+* Modern front-end development workflows
+
+## Future Goals
+
+The long-term goal is to transform this project into a fully functional AI portfolio assistant capable of answering questions about my:
+
+* Professional experience
+* Technical skills
+* Projects
+* Resume
+* Contact information
+
+## Author
+
+**Mitchell Veix**
+
+* GitHub: https://github.com/mitchellveix
+* LinkedIn: *(Add your LinkedIn URL here)*
+
+---
+
+This project is actively being developed as part of my continued learning in React, TypeScript, and modern front-end development.
