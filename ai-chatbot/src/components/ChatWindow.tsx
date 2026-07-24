@@ -11,6 +11,8 @@ function ChatWindow() {
 
   const [messages, setMessages] = useState<MessageType[]>([]);
 
+  const messageCount = messages.length;
+
   function handleSend(): void {
 
     if (message.trim() === "") {
@@ -22,13 +24,15 @@ function ChatWindow() {
     const newMessage: MessageType = {
         id: Date.now(),
         text: message,
-        sender: "user"
+        sender: "user",
+        timestamp: new Date().toLocaleTimeString()
     };
 
     const botMessage: MessageType = {
         id: Date.now() + 1,
         text: getBotReply(message),
-        sender: "bot"
+        sender: "bot",
+        timestamp: new Date().toLocaleTimeString()
     };
 
     setMessages([
@@ -46,6 +50,10 @@ function ChatWindow() {
 
       <p>
         Hello! I'm {chatbotName}.
+      </p>
+
+      <p>
+        Messages: {messageCount}
       </p>
 
       {messages.map((chatMessage) => (

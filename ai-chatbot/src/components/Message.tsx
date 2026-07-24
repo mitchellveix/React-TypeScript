@@ -8,10 +8,17 @@ function Message({ message }: Props) {
 
   return (
     <p className={message.sender}>
-      <strong>
-        {message.sender === "user" ? "You" : "Bot"}:
-      </strong>{" "}
-      {message.text}
+
+        <strong>
+            {message.sender === "user" ? "You" : "Bot"}:
+        </strong>{" "}
+
+        {message.text}
+
+        <small>
+            {message.timestamp}
+        </small>
+
     </p>
   );
 

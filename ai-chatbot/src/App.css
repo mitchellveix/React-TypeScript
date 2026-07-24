@@ -40,3 +40,9 @@
 .bot {
   text-align: left;
 }
+
+small {
+  display: block;
+  font-size: 12px;
+  opacity: 0.6;
+}
