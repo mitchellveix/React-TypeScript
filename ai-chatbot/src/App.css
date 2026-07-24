@@ -32,3 +32,11 @@
 .input-area button {
   padding: 10px 20px;
 }
+
+.user {
+  text-align: right;
+}
+
+.bot {
+  text-align: left;
+}

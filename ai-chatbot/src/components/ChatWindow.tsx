@@ -1,6 +1,7 @@
 import { useState } from "react";
-import type { Message } from "../types/chat";
+import type { Message as MessageType } from "../types/chat";
 import { getBotReply } from "../services/chatbot";
+import Message from "./Message";
 
 function ChatWindow() {
 
@@ -8,7 +9,7 @@ function ChatWindow() {
 
   const [message, setMessage] = useState<string>("");
 
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<MessageType[]>([]);
 
   function handleSend(): void {
 
@@ -18,13 +19,13 @@ function ChatWindow() {
 
     }
 
-    const newMessage: Message = {
+    const newMessage: MessageType = {
         id: Date.now(),
         text: message,
         sender: "user"
     };
 
-    const botMessage: Message = {
+    const botMessage: MessageType = {
         id: Date.now() + 1,
         text: getBotReply(message),
         sender: "bot"
@@ -48,12 +49,10 @@ function ChatWindow() {
       </p>
 
       {messages.map((chatMessage) => (
-        <p key={chatMessage.id}>
-            <strong>
-            {chatMessage.sender === "user" ? "You" : "Bot"}:
-            </strong>{" "}
-            {chatMessage.text}
-        </p>
+        <Message
+            key={chatMessage.id}
+            message={chatMessage}
+        />
       ))}
 
       <div className="input-area">

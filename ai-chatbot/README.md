@@ -1,4 +1,4 @@
-# AI Chatbot
+# Portfolio Chatbot
 
 A chatbot built with **React**, **TypeScript**, and **Vite** as part of my journey to learn modern front-end development. This project is being developed step by step while learning TypeScript fundamentals, React best practices, and API integration.
 
