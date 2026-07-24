@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Message } from "../types/chat";
+import { getBotReply } from "../services/chatbot";
 
 function ChatWindow() {
 
@@ -23,7 +24,17 @@ function ChatWindow() {
         sender: "user"
     };
 
-    setMessages([...messages, newMessage]);
+    const botMessage: Message = {
+        id: Date.now() + 1,
+        text: getBotReply(message),
+        sender: "bot"
+    };
+
+    setMessages([
+        ...messages,
+        newMessage,
+        botMessage
+    ]);
 
     setMessage("");
 
@@ -38,6 +49,9 @@ function ChatWindow() {
 
       {messages.map((chatMessage) => (
         <p key={chatMessage.id}>
+            <strong>
+            {chatMessage.sender === "user" ? "You" : "Bot"}:
+            </strong>{" "}
             {chatMessage.text}
         </p>
       ))}

@@ -1,5 +1,5 @@
 export interface Message {
   id: number;
   text: string;
-  sender: "user";
+  sender: "user" | "bot";
 }
