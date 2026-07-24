@@ -11,14 +11,14 @@ function ChatWindow() {
 
   const [messages, setMessages] = useState<MessageType[]>([]);
 
+  const [isTyping, setIsTyping] = useState<boolean>(false);
+
   const messageCount = messages.length;
 
   function handleSend(): void {
 
     if (message.trim() === "") {
-
         return;
-
     }
 
     const newMessage: MessageType = {
@@ -28,22 +28,38 @@ function ChatWindow() {
         timestamp: new Date().toLocaleTimeString()
     };
 
-    const botMessage: MessageType = {
-        id: Date.now() + 1,
-        text: getBotReply(message),
-        sender: "bot",
-        timestamp: new Date().toLocaleTimeString()
-    };
-
     setMessages([
         ...messages,
-        newMessage,
-        botMessage
+        newMessage
     ]);
 
     setMessage("");
 
-  }
+    setIsTyping(true);
+
+
+    setTimeout(() => {
+
+        const botMessage: MessageType = {
+            id: Date.now() + 1,
+            text: getBotReply(message),
+            sender: "bot",
+            timestamp: new Date().toLocaleTimeString()
+        };
+
+
+        setMessages((currentMessages) => [
+            ...currentMessages,
+            botMessage
+        ]);
+
+
+        setIsTyping(false);
+
+
+    }, 1500);
+
+    }
 
   return (
     <div className="chat-window">
@@ -63,6 +79,12 @@ function ChatWindow() {
         />
       ))}
 
+      {isTyping && (
+        <p className="typing">
+            Bot is typing...
+        </p>
+      )}
+
       <div className="input-area">
 
         <input
@@ -75,7 +97,7 @@ function ChatWindow() {
 
         <button
             onClick={handleSend}
-            disabled={message.trim() === ""}
+            disabled={message.trim() === "" || isTyping}
         >
             Send
         </button>
