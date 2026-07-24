@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { Message as MessageType } from "../types/chat";
 import { getBotReply } from "../services/chatbot";
 import Message from "./Message";
-import { getAdvice } from "../services/advice";
 
 function ChatWindow() {
 
@@ -10,7 +9,14 @@ function ChatWindow() {
 
   const [message, setMessage] = useState<string>("");
 
-  const [messages, setMessages] = useState<MessageType[]>([]);
+  const [messages, setMessages] = useState<MessageType[]>([
+        {
+            id: crypto.randomUUID(),
+            text: "Hi! I'm the Portfolio Assistant. Ask me about my skills, projects, or experience.",
+            sender: "bot",
+            timestamp: new Date().toLocaleTimeString()
+        }
+    ]);
 
   const [isTyping, setIsTyping] = useState<boolean>(false);
 
@@ -22,9 +28,11 @@ function ChatWindow() {
         return;
     }
 
+    const userText = message;
+
     const newMessage: MessageType = {
-        id: Date.now(),
-        text: message,
+        id: crypto.randomUUID(),
+        text: userText,
         sender: "user",
         timestamp: new Date().toLocaleTimeString()
     };
@@ -38,47 +46,46 @@ function ChatWindow() {
 
     setIsTyping(true);
 
-    const reply = await getBotReply(message);
+    try {
 
-    const botMessage: MessageType = {
-        id: Date.now() + 1,
-        text: reply,
-        sender: "bot",
-        timestamp: new Date().toLocaleTimeString()
-    };
+        const reply = await getBotReply(userText);
+
+        const botMessage: MessageType = {
+            id: crypto.randomUUID(),
+            text: reply,
+            sender: "bot",
+            timestamp: new Date().toLocaleTimeString()
+        };
+
+        setMessages((currentMessages) => [
+            ...currentMessages,
+            botMessage
+        ]);
 
 
-    setMessages((currentMessages) => [
-        ...currentMessages,
-        botMessage
-    ]);
+    } catch (error) {
+
+        const errorMessage: MessageType = {
+            id: crypto.randomUUID(),
+            text: "Sorry, I couldn't get a response right now.",
+            sender: "bot",
+            timestamp: new Date().toLocaleTimeString()
+        };
 
 
-    setIsTyping(false);
+        setMessages((currentMessages) => [
+            ...currentMessages,
+            errorMessage
+        ]);
+
+
+    } finally {
+
+        setIsTyping(false);
+
+    }
 
   }
-
-    useEffect(() => {
-
-        async function loadWelcomeMessage() {
-
-            const advice = await getAdvice();
-
-            setMessages((currentMessages) => [
-                ...currentMessages,
-                {
-                    id: 1,
-                    text: advice,
-                    sender: "bot",
-                    timestamp: new Date().toLocaleTimeString()
-                }
-            ]);
-
-        }
-
-        loadWelcomeMessage();
-
-        }, []);
 
   return (
     <div className="chat-container">
