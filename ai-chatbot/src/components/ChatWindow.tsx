@@ -29,8 +29,8 @@ function ChatWindow() {
         timestamp: new Date().toLocaleTimeString()
     };
 
-    setMessages([
-        ...messages,
+    setMessages((currentMessages) => [
+        ...currentMessages,
         newMessage
     ]);
 
@@ -60,7 +60,7 @@ function ChatWindow() {
 
     }, 1500);
 
-    }
+  }
 
     useEffect(() => {
 
