@@ -4,19 +4,27 @@ function ChatWindow() {
 
   const chatbotName = "Portfolio Assistant";
 
-  const version = 1;
-
   const [message, setMessage] = useState<string>("");
+
+  function handleSend(): void {
+
+    if (message.trim() === "") {
+
+        return;
+
+    }
+
+    console.log(message);
+
+    setMessage("");
+
+  }
 
   return (
     <div className="chat-window">
 
       <p>
         Hello! I'm {chatbotName}.
-      </p>
-
-      <p>
-        Current message: {message}
       </p>
 
       <div className="input-area">
@@ -29,8 +37,11 @@ function ChatWindow() {
           placeholder="Type a message..."
         />
 
-        <button>
-          Send
+        <button
+            onClick={handleSend}
+            disabled={message.trim() === ""}
+        >
+            Send
         </button>
 
       </div>
