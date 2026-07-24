@@ -87,9 +87,7 @@ function ChatWindow() {
     <div className="chat-container">
 
         <div className="chat-header">
-            <h2>
-                Portfolio Assistant
-            </h2>
+            <h2>{chatbotName}</h2>
 
             <p>
                 Ask me about my skills and projects
