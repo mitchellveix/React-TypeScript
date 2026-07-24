@@ -7,7 +7,7 @@ interface Props {
 function Message({ message }: Props) {
 
   return (
-    <p className={message.sender}>
+    <div className={`message ${message.sender}`}>
 
         <strong>
             {message.sender === "user" ? "You" : "Bot"}:
@@ -19,7 +19,7 @@ function Message({ message }: Props) {
             {message.timestamp}
         </small>
 
-    </p>
+    </div>
   );
 
 }

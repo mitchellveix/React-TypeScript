@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Message as MessageType } from "../types/chat";
 import { getBotReply } from "../services/chatbot";
 import Message from "./Message";
@@ -61,48 +61,73 @@ function ChatWindow() {
 
     }
 
+    useEffect(() => {
+
+    setMessages([
+        {
+        id: 1,
+        text: "Hi! I'm Portfolio Assistant. Ask me about my experience or projects.",
+        sender: "bot",
+        timestamp: new Date().toLocaleTimeString()
+        }
+    ]);
+
+    }, []);
+
   return (
-    <div className="chat-window">
+    <div className="chat-container">
 
-      <p>
-        Hello! I'm {chatbotName}.
-      </p>
+        <div className="chat-header">
+            <h2>
+                Portfolio Assistant
+            </h2>
 
-      <p>
-        Messages: {messageCount}
-      </p>
+            <p>
+                Ask me about my skills and projects
+            </p>
+        </div>
 
-      {messages.map((chatMessage) => (
-        <Message
-            key={chatMessage.id}
-            message={chatMessage}
-        />
-      ))}
 
-      {isTyping && (
-        <p className="typing">
-            Bot is typing...
-        </p>
-      )}
+        <div className="chat-messages">
 
-      <div className="input-area">
+            {messages.map((chatMessage) => (
+                <Message
+                key={chatMessage.id}
+                message={chatMessage}
+                />
+            ))}
 
-        <input
-          value={message}
-          onChange={(event) =>
-            setMessage(event.target.value)
-          }
-          placeholder="Type a message..."
-        />
 
-        <button
-            onClick={handleSend}
-            disabled={message.trim() === "" || isTyping}
-        >
-            Send
-        </button>
+            {isTyping && (
+                <p className="typing">
+                Bot is typing...
+                </p>
+            )}
 
-      </div>
+        </div>
+
+
+        <div className="chat-input">
+
+            <input
+                value={message}
+                onChange={(event) =>
+                setMessage(event.target.value)
+                }
+                placeholder="Type a message..."
+            />
+
+
+            <button
+                onClick={handleSend}
+                disabled={
+                message.trim() === "" || isTyping
+                }
+            >
+                Send
+            </button>
+
+        </div>
 
     </div>
   );
