@@ -16,7 +16,7 @@ function ChatWindow() {
 
   const messageCount = messages.length;
 
-  function handleSend(): void {
+  async function handleSend(): Promise<void> {
 
     if (message.trim() === "") {
         return;
@@ -38,27 +38,23 @@ function ChatWindow() {
 
     setIsTyping(true);
 
+    const reply = await getBotReply(message);
 
-    setTimeout(() => {
-
-        const botMessage: MessageType = {
-            id: Date.now() + 1,
-            text: getBotReply(message),
-            sender: "bot",
-            timestamp: new Date().toLocaleTimeString()
-        };
-
-
-        setMessages((currentMessages) => [
-            ...currentMessages,
-            botMessage
-        ]);
+    const botMessage: MessageType = {
+        id: Date.now() + 1,
+        text: reply,
+        sender: "bot",
+        timestamp: new Date().toLocaleTimeString()
+    };
 
 
-        setIsTyping(false);
+    setMessages((currentMessages) => [
+        ...currentMessages,
+        botMessage
+    ]);
 
 
-    }, 1500);
+    setIsTyping(false);
 
   }
 
@@ -68,13 +64,14 @@ function ChatWindow() {
 
             const advice = await getAdvice();
 
-            setMessages([
-            {
-                id: 1,
-                text: advice,
-                sender: "bot",
-                timestamp: new Date().toLocaleTimeString()
-            }
+            setMessages((currentMessages) => [
+                ...currentMessages,
+                {
+                    id: 1,
+                    text: advice,
+                    sender: "bot",
+                    timestamp: new Date().toLocaleTimeString()
+                }
             ]);
 
         }

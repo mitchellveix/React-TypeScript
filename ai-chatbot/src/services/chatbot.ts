@@ -1,17 +1,25 @@
-export function getBotReply(message: string): string {
-  const lowerCaseMessage = message.toLowerCase();
+export async function getBotReply(message: string): Promise<string> {
 
-  if (lowerCaseMessage.includes("hello")) {
-    return "Hi! Nice to meet you!";
-  }
+    return new Promise((resolve) => {
 
-  if (lowerCaseMessage.includes("react")) {
-    return "React is a JavaScript library for building user interfaces.";
-  }
+        setTimeout(() => {
 
-  if (lowerCaseMessage.includes("typescript")) {
-    return "TypeScript adds static types to JavaScript.";
-  }
+            if (message.toLowerCase().includes("react")) {
 
-  return "That's interesting! Tell me more.";
+                resolve(
+                    "I use React and TypeScript to build applications."
+                );
+
+            } else {
+
+                resolve(
+                    "Thanks for your question! I'll add more knowledge soon."
+                );
+
+            }
+
+        }, 1500);
+
+    });
+
 }
