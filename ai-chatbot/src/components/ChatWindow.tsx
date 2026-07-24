@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { Message as MessageType } from "../types/chat";
 import { getBotReply } from "../services/chatbot";
 import Message from "./Message";
+import { getAdvice } from "../services/advice";
 
 function ChatWindow() {
 
@@ -63,16 +64,24 @@ function ChatWindow() {
 
     useEffect(() => {
 
-    setMessages([
-        {
-        id: 1,
-        text: "Hi! I'm Portfolio Assistant. Ask me about my experience or projects.",
-        sender: "bot",
-        timestamp: new Date().toLocaleTimeString()
-        }
-    ]);
+        async function loadWelcomeMessage() {
 
-    }, []);
+            const advice = await getAdvice();
+
+            setMessages([
+            {
+                id: 1,
+                text: advice,
+                sender: "bot",
+                timestamp: new Date().toLocaleTimeString()
+            }
+            ]);
+
+        }
+
+        loadWelcomeMessage();
+
+        }, []);
 
   return (
     <div className="chat-container">
