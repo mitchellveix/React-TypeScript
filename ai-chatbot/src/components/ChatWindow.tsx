@@ -1,10 +1,13 @@
 import { useState } from "react";
+import type { Message } from "../types/chat";
 
 function ChatWindow() {
 
   const chatbotName = "Portfolio Assistant";
 
   const [message, setMessage] = useState<string>("");
+
+  const [messages, setMessages] = useState<Message[]>([]);
 
   function handleSend(): void {
 
@@ -14,7 +17,13 @@ function ChatWindow() {
 
     }
 
-    console.log(message);
+    const newMessage: Message = {
+        id: Date.now(),
+        text: message,
+        sender: "user"
+    };
+
+    setMessages([...messages, newMessage]);
 
     setMessage("");
 
@@ -26,6 +35,12 @@ function ChatWindow() {
       <p>
         Hello! I'm {chatbotName}.
       </p>
+
+      {messages.map((chatMessage) => (
+        <p key={chatMessage.id}>
+            {chatMessage.text}
+        </p>
+      ))}
 
       <div className="input-area">
 
