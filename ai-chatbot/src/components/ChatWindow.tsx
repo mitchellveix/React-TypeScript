@@ -92,6 +92,8 @@ function ChatWindow() {
             <p>
                 Ask me about my skills and projects
             </p>
+
+            <p>Messages: {messageCount}</p>
         </div>
 
 
