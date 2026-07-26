@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "react-typescript",
+  "compatibility_date": "2026-07-26",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "ai-chatbot"
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}
