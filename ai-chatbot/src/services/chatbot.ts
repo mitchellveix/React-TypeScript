@@ -16,7 +16,10 @@ export async function getBotReply(
 
             const question = latestMessage.content;
 
-            const intent = detectIntent(question);
+            const intent = detectIntent(
+                question,
+                conversation
+            );
 
             const response = generateResponse(intent);
 

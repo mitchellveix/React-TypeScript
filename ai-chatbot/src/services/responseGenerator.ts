@@ -9,46 +9,85 @@ export function generateResponse(
 
     switch(intent) {
 
+
         case "skills":
 
-            return (
-                `My technical skills include ${portfolioData.skills.join(", ")}.`
-            );
+            return `
+My main technologies include:
+
+${portfolioData.skills.join(", ")}
+
+I also work with platforms such as:
+
+${portfolioData.platforms.join(", ")}
+            `;
 
 
         case "experience":
 
-            return (
-                portfolioData.summary
-            );
+            return `
+I have 18+ years of experience in web development and email development.
+
+My recent experience includes:
+
+${portfolioData.experience
+.map(
+(exp) =>
+`${exp.role} at ${exp.company} (${exp.dates})
+${exp.description}`
+)
+.join("\n\n")}
+            `;
 
 
         case "projects":
 
-            return (
-                `One of my featured projects is ${portfolioData.projects[0].name}. ${portfolioData.projects[0].description}`
-            );
+            return `
+Some of my featured projects include:
+
+${portfolioData.projects
+.map(
+(project) =>
+`${project.name}:
+${project.description}`
+)
+.join("\n\n")}
+            `;
 
 
         case "email":
 
-            return (
-                "I have built and deployed 11,000+ responsive HTML email campaigns and created 90+ reusable email templates."
-            );
+            return `
+My email development background includes:
+
+${portfolioData.specialties.join(", ")}
+
+Some achievements:
+${portfolioData.achievements.join("\n")}
+            `;
 
 
         case "education":
 
-            return (
-                portfolioData.education.join(". ")
-            );
+            return `
+My education includes:
+
+${portfolioData.education.join("\n")}
+            `;
 
 
         default:
 
-            return (
-                "I can answer questions about my skills, experience, projects, and email development background."
-            );
+            return `
+I can answer questions about:
+
+- my skills
+- my experience
+- my projects
+- my email development background
+- my education
+            `;
+
     }
 
 }
