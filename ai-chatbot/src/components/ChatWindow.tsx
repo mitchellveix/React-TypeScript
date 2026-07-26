@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Message as MessageType } from "../types/chat";
 import { getBotReply } from "../services/chatbot";
 import Message from "./Message";
@@ -20,7 +20,15 @@ function ChatWindow() {
 
   const [isTyping, setIsTyping] = useState<boolean>(false);
 
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
   const messageCount = messages.length;
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({
+        behavior: "smooth",
+    });
+  }, [messages]);
 
   async function handleSend(): Promise<void> {
 
@@ -116,6 +124,8 @@ function ChatWindow() {
                 Bot is typing...
                 </p>
             )}
+
+            <div ref={messagesEndRef}></div>
 
         </div>
 
