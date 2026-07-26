@@ -1,28 +1,48 @@
 # Portfolio Chatbot
 
-A chatbot built with **React**, **TypeScript**, and **Vite** as part of my journey to learn modern front-end development. This project is being developed step by step while learning TypeScript fundamentals, React best practices, and API integration.
+A professional portfolio chatbot built with **React**, **TypeScript**, and **Vite**. This project demonstrates modern front-end development practices including component-based architecture, TypeScript fundamentals, state management, and chatbot logic.
+
+## 🚀 Live Demo
+
+Try the chatbot here:
+
+**https://ai-chatbot.mitchv87.workers.dev/**
 
 ## Overview
 
-The goal of this project is to build a professional portfolio chatbot that can answer questions about my background, skills, and projects. The application starts as a simple rule-based chatbot and will eventually integrate with an AI model through a backend API.
+The goal of this project is to build an interactive portfolio assistant that can answer questions about my professional background, technical skills, and projects.
 
-This project serves as both a learning exercise and a portfolio piece, demonstrating modern React development using TypeScript.
+The chatbot was built step by step while learning modern React and TypeScript development. It currently uses a custom rule-based response system and is structured to support future integration with AI models through a backend API.
+
+This project serves as both a learning experience and a portfolio piece, demonstrating my ability to build modern, responsive front-end applications.
+
+## Features
+
+* Interactive chatbot interface
+* Custom intent detection and response handling
+* TypeScript type safety
+* React component architecture
+* Conversation state management
+* Responsive chat layout
+* Deployed live application
+* Organized service-based project structure
 
 ## Planned Features
 
-* AI-powered responses
+* AI-powered responses using an LLM API
 * Backend API integration
 * Typing indicator
 * Auto-scrolling conversation
 * Markdown support
 * Conversation history saved locally
 * Dark mode
-* Mobile-friendly design
-* Accessibility improvements
+* Mobile design improvements
+* Accessibility enhancements
 * Unit testing
-* Deployment to Vercel
 
 ## Technologies
+
+### Front-End
 
 * React
 * TypeScript
@@ -37,7 +57,7 @@ This project serves as both a learning exercise and a portfolio piece, demonstra
 * Express
 * OpenAI API (or compatible LLM)
 * Local Storage
-* GitHub Actions (optional)
+* GitHub Actions / CI/CD
 
 ## Project Structure
 
@@ -53,64 +73,3 @@ src/
 ├── App.css
 ├── index.css
 └── main.tsx
-```
-
-## Getting Started
-
-### Clone the repository
-
-```bash
-git clone https://github.com/mitchellveix/portfolio-chatbot.git
-```
-
-### Install dependencies
-
-```bash
-npm install
-```
-
-### Start the development server
-
-```bash
-npm run dev
-```
-
-Open your browser and navigate to:
-
-```text
-http://localhost:5173
-```
-
-## What I'm Learning
-
-This project is helping me gain hands-on experience with:
-
-* TypeScript fundamentals
-* React Hooks
-* Component architecture
-* State management
-* Event handling
-* Interfaces and custom types
-* API integration
-* Modern front-end development workflows
-
-## Future Goals
-
-The long-term goal is to transform this project into a fully functional AI portfolio assistant capable of answering questions about my:
-
-* Professional experience
-* Technical skills
-* Projects
-* Resume
-* Contact information
-
-## Author
-
-**Mitchell Veix**
-
-* GitHub: https://github.com/mitchellveix
-* LinkedIn: *(Add your LinkedIn URL here)*
-
----
-
-This project is actively being developed as part of my continued learning in React, TypeScript, and modern front-end development.
