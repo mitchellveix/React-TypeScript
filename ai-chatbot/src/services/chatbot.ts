@@ -1,5 +1,6 @@
 import type { ChatMessage } from "../types/chat";
-import { portfolioData } from "../data/portfolio";
+import { detectIntent } from "./intentDetector";
+import { generateResponse } from "./responseGenerator";
 
 
 export async function getBotReply(
@@ -10,51 +11,17 @@ export async function getBotReply(
 
         setTimeout(() => {
 
-            const latestMessage = conversation[
-                conversation.length - 1
-            ];
+            const latestMessage =
+                conversation[conversation.length - 1];
 
-            const question = latestMessage.content.toLowerCase();
+            const question = latestMessage.content;
 
-            if (question.includes("react")) {
+            const intent = detectIntent(question);
 
-                resolve(
-                    `${portfolioData.name} uses React and TypeScript to build modern applications.`
-                );
+            const response = generateResponse(intent);
 
-            }
+            resolve(response);
 
-            else if (question.includes("skills")) {
-
-                resolve(
-                    `My skills include ${portfolioData.skills.join(", ")}.`
-                );
-
-            }
-
-            else if (question.includes("project")) {
-
-                resolve(
-                    `One of my projects is ${portfolioData.projects[0].name}. ${portfolioData.projects[0].description}`
-                );
-
-            }
-
-            else if (question.includes("experience")) {
-
-                resolve(
-                    portfolioData.summary
-                );
-
-            }
-
-            else {
-
-                resolve(
-                    "I can answer questions about my skills, projects, and experience."
-                );
-
-            }
 
         }, 1500);
 
