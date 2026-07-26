@@ -1,19 +1,57 @@
-export async function getBotReply(message: string): Promise<string> {
+import type { ChatMessage } from "../types/chat";
+import { portfolioData } from "../data/portfolio";
+
+
+export async function getBotReply(
+    conversation: ChatMessage[]
+): Promise<string> {
 
     return new Promise((resolve) => {
 
         setTimeout(() => {
 
-            if (message.toLowerCase().includes("react")) {
+            const latestMessage = conversation[
+                conversation.length - 1
+            ];
+
+            const question = latestMessage.content.toLowerCase();
+
+            if (question.includes("react")) {
 
                 resolve(
-                    "I use React and TypeScript to build applications."
+                    `${portfolioData.name} uses React and TypeScript to build modern applications.`
                 );
 
-            } else {
+            }
+
+            else if (question.includes("skills")) {
 
                 resolve(
-                    "Thanks for your question! I'll add more knowledge soon."
+                    `My skills include ${portfolioData.skills.join(", ")}.`
+                );
+
+            }
+
+            else if (question.includes("project")) {
+
+                resolve(
+                    `One of my projects is ${portfolioData.projects[0].name}. ${portfolioData.projects[0].description}`
+                );
+
+            }
+
+            else if (question.includes("experience")) {
+
+                resolve(
+                    portfolioData.summary
+                );
+
+            }
+
+            else {
+
+                resolve(
+                    "I can answer questions about my skills, projects, and experience."
                 );
 
             }

@@ -4,3 +4,8 @@ export interface Message {
     sender: "user" | "bot";
     timestamp: string;
 }
+
+export interface ChatMessage {
+    role: "user" | "assistant";
+    content: string;
+}

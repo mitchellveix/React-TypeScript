@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import type { Message as MessageType } from "../types/chat";
+
+import type { 
+    Message as MessageType,
+    ChatMessage
+} from "../types/chat";
+
 import { getBotReply } from "../services/chatbot";
 import Message from "./Message";
 
@@ -20,6 +25,14 @@ function ChatWindow() {
 
   const [isTyping, setIsTyping] = useState<boolean>(false);
 
+  const [conversation, setConversation] = useState<ChatMessage[]>([
+    {
+        role: "assistant",
+        content:
+            "Hi! I'm the Portfolio Assistant. Ask me about my skills, projects, or experience."
+    }
+  ]);
+
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const messageCount = messages.length;
@@ -38,6 +51,11 @@ function ChatWindow() {
 
     const userText = message;
 
+    const userChatMessage: ChatMessage = {
+        role: "user",
+        content: userText
+    };
+
     const newMessage: MessageType = {
         id: crypto.randomUUID(),
         text: userText,
@@ -52,11 +70,19 @@ function ChatWindow() {
 
     setMessage("");
 
+    setConversation((current) => [
+        ...current,
+        userChatMessage
+    ]);
+
     setIsTyping(true);
 
     try {
 
-        const reply = await getBotReply(userText);
+        const reply = await getBotReply([
+            ...conversation,
+            userChatMessage
+        ]);
 
         const botMessage: MessageType = {
             id: crypto.randomUUID(),
@@ -65,9 +91,19 @@ function ChatWindow() {
             timestamp: new Date().toLocaleTimeString()
         };
 
+        const botChatMessage: ChatMessage = {
+            role: "assistant",
+            content: reply
+        };
+
         setMessages((currentMessages) => [
             ...currentMessages,
             botMessage
+        ]);
+
+        setConversation((current) => [
+            ...current,
+            botChatMessage
         ]);
 
 
@@ -84,6 +120,14 @@ function ChatWindow() {
         setMessages((currentMessages) => [
             ...currentMessages,
             errorMessage
+        ]);
+
+        setConversation((current) => [
+            ...current,
+            {
+                role: "assistant",
+                content: errorMessage.text
+            }
         ]);
 
 
