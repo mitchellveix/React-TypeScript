@@ -137,12 +137,16 @@ export function detectIntent(
 
     if (
         containsAny(text, [
+            "project",
             "projects",
             "built",
             "created",
             "portfolio",
             "emailos",
             "email os",
+            "email materials",
+            "submission tool",
+            "email builder",
             "application",
             "app"
         ])

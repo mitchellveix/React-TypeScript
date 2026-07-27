@@ -4,7 +4,8 @@ import type { PortfolioIntent } from "../types/portfolio";
 
 export function generateResponse(
     intent: PortfolioIntent,
-    project?: string
+    project?: string,
+    question: string = ""
 ): string {
 
 
@@ -40,19 +41,56 @@ ${job.description}`
 
 case "projects":
 
+    if (project) {
 
-if (project) {
-
-    const selectedProject =
-        portfolioData.projects.find(
-            item =>
-                item.name === project
-        );
+        const selectedProject =
+            portfolioData.projects.find(
+                item =>
+                    item.name === project
+            );
 
 
-    if (selectedProject) {
+        if (selectedProject) {
 
-        return `
+            const lowerQuestion =
+                question.toLowerCase();
+
+
+            if (
+                (
+                    lowerQuestion.includes("technology") ||
+                    lowerQuestion.includes("technologies") ||
+                    lowerQuestion.includes("tech stack") ||
+                    lowerQuestion.includes("stack") ||
+                    lowerQuestion.includes("tools") ||
+                    lowerQuestion.includes("built with")
+                )
+                &&
+                selectedProject.technologies
+            ) {
+
+                return `
+${selectedProject.name} uses:
+
+${selectedProject.technologies.join(", ")}
+                `;
+            }
+
+
+            if (
+                lowerQuestion.includes("who") &&
+                selectedProject.audience
+            ) {
+
+                return `
+${selectedProject.name} is designed for:
+
+${selectedProject.audience}
+                `;
+            }
+
+
+            return `
 ${selectedProject.name}
 
 ${selectedProject.description}
@@ -60,13 +98,12 @@ ${selectedProject.description}
 Technologies:
 
 ${selectedProject.technologies?.join(", ") ?? "Not specified"}
-        `;
+            `;
+        }
     }
 
-}
 
-
-return `
+    return `
 Featured projects:
 
 ${portfolioData.projects.map(
@@ -75,7 +112,7 @@ ${portfolioData.projects.map(
 
 ${project.description}`
 ).join("\n\n")}
-`;
+    `;
 
 
         case "email":

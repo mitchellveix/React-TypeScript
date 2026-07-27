@@ -1,4 +1,7 @@
-import type { ChatMessage } from "../types/chat";
+import type {
+    ChatMessage,
+    ConversationContext
+} from "../types/chat";
 
 import { detectIntent } from "./intentDetector";
 import { generateResponse } from "./responseGenerator";
@@ -6,7 +9,8 @@ import { detectProject } from "./projectDetector";
 
 
 export async function getBotReply(
-    conversation: ChatMessage[]
+    conversation: ChatMessage[],
+    context: ConversationContext
 ): Promise<string> {
 
 
@@ -34,17 +38,17 @@ export async function getBotReply(
 
 
             const project =
-                detectProject(question);
+                detectProject(question)
+                ?? context.currentProject;
 
 
-            const response =
+            resolve(
                 generateResponse(
                     intent,
-                    project
-                );
-
-
-            resolve(response);
+                    project,
+                    question
+                )
+            );
 
 
         }, 1500);

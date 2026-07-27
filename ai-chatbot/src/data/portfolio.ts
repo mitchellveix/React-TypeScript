@@ -102,21 +102,30 @@ export const portfolioData = {
                 "Tailwind CSS",
                 "Node.js",
                 "PostgreSQL"
-            ]
+            ],
+
+            audience:
+                "Email developers and marketers who need a scalable way to build and manage reusable email templates."
         },
 
         {
             name: "Proprietary HTML Email Builder",
 
             description:
-                "Built an internal HTML email builder that standardized email production workflows, improved template consistency, and enabled faster campaign development."
+                "Built an internal HTML email builder that standardized email production workflows, improved template consistency, and enabled faster campaign development.",
+
+            audience:
+                "Email developers and marketing teams who need efficient tools for creating consistent email campaigns."
         },
 
         {
             name: "Email Materials Submission Tool",
 
             description:
-                "Created a tool that streamlined content collection between clients and account teams, reducing production errors and improving collaboration."
+                "Created a tool that streamlined content collection between clients and account teams, reducing production errors and improving collaboration.",
+
+            audience:
+                "Marketing teams and account managers who need a simpler way to collect and organize email content."
         }
     ],
 

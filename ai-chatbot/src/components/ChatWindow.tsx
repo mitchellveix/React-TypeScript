@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from "react";
 
 import type { 
     Message as MessageType,
-    ChatMessage
+    ChatMessage,
+    ConversationContext
 } from "../types/chat";
 
 import { getBotReply } from "../services/chatbot";
@@ -33,6 +34,9 @@ function ChatWindow() {
     }
   ]);
 
+  const [context, setContext] =
+    useState<ConversationContext>({});
+
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const messageCount = messages.length;
@@ -50,6 +54,20 @@ function ChatWindow() {
     }
 
     const userText = message;
+
+    const detectedProject =
+        userText.toLowerCase().includes("emailos")
+            ? "EmailOS"
+            : undefined;
+
+
+    if (detectedProject) {
+
+        setContext({
+            currentProject: detectedProject
+        });
+
+    }
 
     const userChatMessage: ChatMessage = {
         role: "user",
@@ -79,10 +97,13 @@ function ChatWindow() {
 
     try {
 
-        const reply = await getBotReply([
-            ...conversation,
-            userChatMessage
-        ]);
+        const reply = await getBotReply(
+            [
+                ...conversation,
+                userChatMessage
+            ],
+            context
+        );
 
         const botMessage: MessageType = {
             id: crypto.randomUUID(),

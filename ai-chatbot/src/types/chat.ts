@@ -13,5 +13,9 @@ export interface ChatMessage {
 
 
 export interface ConversationContext {
+
     currentProject?: string;
+
+    currentIntent?: string;
+
 }
