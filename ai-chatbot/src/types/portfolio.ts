@@ -4,5 +4,5 @@ export type PortfolioIntent =
     | "projects"
     | "email"
     | "education"
-    | "general"
-    | "unknown";
+    | "achievements"
+    | "general";

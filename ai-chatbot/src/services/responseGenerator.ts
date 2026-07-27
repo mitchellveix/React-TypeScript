@@ -38,6 +38,14 @@ ${job.description}`
 ).join("\n\n")}
             `;
 
+case "achievements":
+
+return `
+Some of Mitchell's notable achievements:
+
+${portfolioData.achievements.join("\n")}
+`;
+
 
 case "projects":
 
@@ -95,10 +103,26 @@ ${selectedProject.name}
 
 ${selectedProject.description}
 
+
+Purpose:
+
+${selectedProject.purpose ?? "Not specified"}
+
+
 Technologies:
 
 ${selectedProject.technologies?.join(", ") ?? "Not specified"}
-            `;
+
+
+Key Features:
+
+${selectedProject.highlights?.join("\n") ?? "Not specified"}
+
+
+Designed For:
+
+${selectedProject.audience ?? "Not specified"}
+`;
         }
     }
 

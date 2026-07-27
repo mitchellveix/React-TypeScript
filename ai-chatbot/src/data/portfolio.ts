@@ -105,7 +105,17 @@ export const portfolioData = {
             ],
 
             audience:
-                "Email developers and marketers who need a scalable way to build and manage reusable email templates."
+                "Email developers and marketers who need a scalable way to build and manage reusable email templates.",
+
+            purpose:
+                "To create a modern replacement for traditional email production workflows by allowing users to build, manage, and export reusable email components.",
+
+            highlights: [
+                "Component-based email building",
+                "Reusable content blocks",
+                "Live email previews",
+                "Production-ready HTML export"
+            ]
         },
 
         {

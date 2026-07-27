@@ -149,6 +149,25 @@ export function detectIntent(
         return "projects";
     }
 
+    /*
+    -------------------------
+    Achievements
+    -------------------------
+    */
+
+    if (
+        containsAny(text, [
+            "achievement",
+            "achievements",
+            "accomplishment",
+            "success",
+            "biggest project",
+            "proud of"
+        ])
+    ) {
+        return "achievements";
+    }
+
 
 
     /*
