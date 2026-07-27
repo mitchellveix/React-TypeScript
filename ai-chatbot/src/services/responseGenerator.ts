@@ -3,7 +3,8 @@ import type { PortfolioIntent } from "../types/portfolio";
 
 
 export function generateResponse(
-    intent: PortfolioIntent
+    intent: PortfolioIntent,
+    project?: string
 ): string {
 
 
@@ -37,21 +38,44 @@ ${job.description}`
             `;
 
 
-        case "projects":
+case "projects":
 
-            return `
+
+if (project) {
+
+    const selectedProject =
+        portfolioData.projects.find(
+            item =>
+                item.name === project
+        );
+
+
+    if (selectedProject) {
+
+        return `
+${selectedProject.name}
+
+${selectedProject.description}
+
+Technologies:
+
+${selectedProject.technologies?.join(", ") ?? "Not specified"}
+        `;
+    }
+
+}
+
+
+return `
 Featured projects:
 
 ${portfolioData.projects.map(
     project =>
 `${project.name}
 
-${project.description}
-
-Technologies:
-${project.technologies?.join(", ") ?? "Not specified"}`
+${project.description}`
 ).join("\n\n")}
-            `;
+`;
 
 
         case "email":

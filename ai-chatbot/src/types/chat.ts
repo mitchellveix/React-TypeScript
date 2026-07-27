@@ -5,7 +5,13 @@ export interface Message {
     timestamp: string;
 }
 
+
 export interface ChatMessage {
     role: "user" | "assistant";
     content: string;
+}
+
+
+export interface ConversationContext {
+    currentProject?: string;
 }
