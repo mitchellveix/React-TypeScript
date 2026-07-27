@@ -7,51 +7,32 @@ import { detectIntent } from "./intentDetector";
 import { generateResponse } from "./responseGenerator";
 import { detectProject } from "./projectDetector";
 
-
 export async function getBotReply(
     conversation: ChatMessage[],
     context: ConversationContext
 ): Promise<string> {
 
-
     return new Promise((resolve) => {
-
 
         setTimeout(() => {
 
-
             const latestMessage =
-                conversation[
-                    conversation.length - 1
-                ];
-
+                conversation[conversation.length - 1];
 
             const question =
                 latestMessage.content;
-
-
-            const intent =
-                detectIntent(
-                    question,
-                    conversation
-                );
-
 
             const project =
                 detectProject(question)
                 ?? context.currentProject;
 
-                if (project) {
-                    return resolve(
-                        generateResponse(
-                            "projects",
-                            project,
-                            question
-                        )
+            const intent =
+                project
+                    ? "projects"
+                    : detectIntent(
+                        question,
+                        conversation
                     );
-
-                }
-
 
             resolve(
                 generateResponse(
@@ -60,7 +41,6 @@ export async function getBotReply(
                     question
                 )
             );
-
 
         }, 1500);
 
