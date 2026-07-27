@@ -10,6 +10,12 @@ export function detectIntent(
     const text = question.toLowerCase();
 
 
+    /*
+    -------------------------
+    Follow-up detection
+    -------------------------
+    */
+
     const isFollowUp =
         text.includes("that") ||
         text.includes("it") ||
@@ -26,98 +32,182 @@ export function detectIntent(
 
         for (const message of previousMessages) {
 
-            const previousText =
-                message.content.toLowerCase();
+            if (message.role === "user") {
+
+                const previousText =
+                    message.content.toLowerCase();
 
 
-            if (
-                previousText.includes("emailos") ||
-                previousText.includes("email os")
-            ) {
-                return "projects";
+                if (
+                    containsAny(previousText, [
+                        "emailos",
+                        "email os",
+                        "project"
+                    ])
+                ) {
+                    return "projects";
+                }
+
+
+                if (
+                    containsAny(previousText, [
+                        "skill",
+                        "technology",
+                        "stack",
+                        "tools"
+                    ])
+                ) {
+                    return "skills";
+                }
+
+
+                if (
+                    containsAny(previousText, [
+                        "experience",
+                        "career",
+                        "work"
+                    ])
+                ) {
+                    return "experience";
+                }
+
             }
-
-
-            if (
-                previousText.includes("skill") ||
-                previousText.includes("technology") ||
-                previousText.includes("stack")
-            ) {
-                return "skills";
-            }
-
-
-            if (
-                previousText.includes("experience") ||
-                previousText.includes("career") ||
-                previousText.includes("work")
-            ) {
-                return "experience";
-            }
-
         }
     }
 
 
+
+    /*
+    -------------------------
+    Skills
+    -------------------------
+    */
+
     if (
-        text.includes("skill") ||
-        text.includes("technolog") ||
-        text.includes("tech stack") ||
-        text.includes("tools") ||
-        text.includes("stack") ||
-        text.includes("framework") ||
-        text.includes("language") ||
-        text.includes("library")
+        containsAny(text, [
+            "skills",
+            "technology",
+            "technologies",
+            "tech stack",
+            "stack",
+            "framework",
+            "frameworks",
+            "languages",
+            "tools",
+            "libraries",
+            "frontend",
+            "front end",
+            "coding",
+            "programming"
+        ])
     ) {
         return "skills";
     }
 
 
+
+    /*
+    -------------------------
+    Experience
+    -------------------------
+    */
+
     if (
-        text.includes("experience") ||
-        text.includes("work") ||
-        text.includes("career") ||
-        text.includes("background")
+        containsAny(text, [
+            "experience",
+            "career",
+            "background",
+            "history",
+            "worked",
+            "jobs",
+            "companies",
+            "professional"
+        ])
     ) {
         return "experience";
     }
 
 
+
+    /*
+    -------------------------
+    Projects
+    -------------------------
+    */
+
     if (
-        text.includes("emailos") ||
-        text.includes("email os") ||
-        text.includes("email builder")
+        containsAny(text, [
+            "projects",
+            "built",
+            "created",
+            "portfolio",
+            "emailos",
+            "email os",
+            "application",
+            "app"
+        ])
     ) {
         return "projects";
     }
 
 
-    if (
-        text.includes("project") ||
-        text.includes("built") ||
-        text.includes("created")
-    ) {
-        return "projects";
-    }
 
+    /*
+    -------------------------
+    Email Development
+    -------------------------
+    */
 
     if (
-        text.includes("email") ||
-        text.includes("newsletter") ||
-        text.includes("campaign")
+        containsAny(text, [
+            "email",
+            "newsletter",
+            "campaign",
+            "html email",
+            "marketing cloud",
+            "salesforce"
+        ])
     ) {
         return "email";
     }
 
 
+
+    /*
+    -------------------------
+    Education
+    -------------------------
+    */
+
     if (
-        text.includes("education") ||
-        text.includes("degree") ||
-        text.includes("certification")
+        containsAny(text, [
+            "education",
+            "degree",
+            "school",
+            "certification"
+        ])
     ) {
         return "education";
     }
 
 
     return "general";
+}
+
+
+
+/*
+Helper function
+Checks if text contains any phrase
+*/
+
+function containsAny(
+    text: string,
+    keywords: string[]
+): boolean {
+
+    return keywords.some(keyword =>
+        text.includes(keyword)
+    );
+
 }
