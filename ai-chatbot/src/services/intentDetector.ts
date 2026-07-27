@@ -9,11 +9,13 @@ export function detectIntent(
 
     const text = question.toLowerCase();
 
+
     const isFollowUp =
         text.includes("that") ||
         text.includes("it") ||
         text.includes("those") ||
         text.includes("them");
+
 
     if (isFollowUp) {
 
@@ -24,14 +26,33 @@ export function detectIntent(
 
         for (const message of previousMessages) {
 
-            if (message.role === "assistant") {
+            const previousText =
+                message.content.toLowerCase();
 
-                if (
-                    message.content.toLowerCase().includes("emailos")
-                ) {
-                    return "projects";
-                }
 
+            if (
+                previousText.includes("emailos") ||
+                previousText.includes("email os")
+            ) {
+                return "projects";
+            }
+
+
+            if (
+                previousText.includes("skill") ||
+                previousText.includes("technology") ||
+                previousText.includes("stack")
+            ) {
+                return "skills";
+            }
+
+
+            if (
+                previousText.includes("experience") ||
+                previousText.includes("career") ||
+                previousText.includes("work")
+            ) {
+                return "experience";
             }
 
         }
@@ -61,6 +82,7 @@ export function detectIntent(
         return "experience";
     }
 
+
     if (
         text.includes("emailos") ||
         text.includes("email os") ||
@@ -68,6 +90,7 @@ export function detectIntent(
     ) {
         return "projects";
     }
+
 
     if (
         text.includes("project") ||

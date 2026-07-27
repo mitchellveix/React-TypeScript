@@ -13,11 +13,11 @@ export function generateResponse(
         case "skills":
 
             return `
-My main technologies include:
+Mitchell's technology stack includes:
 
 ${portfolioData.skills.join(", ")}
 
-I also work with platforms such as:
+Platforms:
 
 ${portfolioData.platforms.join(", ")}
             `;
@@ -26,51 +26,53 @@ ${portfolioData.platforms.join(", ")}
         case "experience":
 
             return `
-I have 18+ years of experience in web development and email development.
+Mitchell has 18+ years of professional experience.
 
-My recent experience includes:
+${portfolioData.experience.map(
+    job =>
+`${job.role} at ${job.company} (${job.dates})
 
-${portfolioData.experience
-.map(
-(exp) =>
-`${exp.role} at ${exp.company} (${exp.dates})
-${exp.description}`
-)
-.join("\n\n")}
+${job.description}`
+).join("\n\n")}
             `;
 
 
         case "projects":
 
             return `
-Some of my featured projects include:
+Featured projects:
 
-${portfolioData.projects
-.map(
-(project) =>
-`${project.name}:
-${project.description}`
-)
-.join("\n\n")}
+${portfolioData.projects.map(
+    project =>
+`${project.name}
+
+${project.description}
+
+Technologies:
+${project.technologies?.join(", ") ?? "Not specified"}`
+).join("\n\n")}
             `;
 
 
         case "email":
 
             return `
-My email development background includes:
+Mitchell specializes in HTML email development.
 
-${portfolioData.specialties.join(", ")}
+Highlights:
 
-Some achievements:
-${portfolioData.achievements.join("\n")}
+${portfolioData.achievements
+.filter(item =>
+    item.toLowerCase().includes("email")
+)
+.join("\n")}
             `;
 
 
         case "education":
 
             return `
-My education includes:
+Education:
 
 ${portfolioData.education.join("\n")}
             `;
@@ -79,15 +81,8 @@ ${portfolioData.education.join("\n")}
         default:
 
             return `
-I can answer questions about:
-
-- my skills
-- my experience
-- my projects
-- my email development background
-- my education
+I can answer questions about Mitchell's skills, experience, projects, education, and email development background.
             `;
-
     }
 
 }
