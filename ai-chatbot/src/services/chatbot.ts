@@ -41,6 +41,17 @@ export async function getBotReply(
                 detectProject(question)
                 ?? context.currentProject;
 
+                if (project) {
+                    return resolve(
+                        generateResponse(
+                            "projects",
+                            project,
+                            question
+                        )
+                    );
+
+                }
+
 
             resolve(
                 generateResponse(

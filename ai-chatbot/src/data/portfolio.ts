@@ -126,6 +126,16 @@ export const portfolioData = {
 
             audience:
                 "Marketing teams and account managers who need a simpler way to collect and organize email content."
+        },
+
+        {
+            name: "Portfolio AI Assistant",
+
+            description:
+                "An AI chatbot that answers questions about Mitchell's portfolio.",
+
+            audience:
+                "Marketing teams and account managers who need a simpler way to collect and organize email content."
         }
     ],
 

@@ -142,11 +142,6 @@ export function detectIntent(
             "built",
             "created",
             "portfolio",
-            "emailos",
-            "email os",
-            "email materials",
-            "submission tool",
-            "email builder",
             "application",
             "app"
         ])
