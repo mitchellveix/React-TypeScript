@@ -132,10 +132,19 @@ export const portfolioData = {
             name: "Portfolio AI Assistant",
 
             description:
-                "An AI chatbot that answers questions about Mitchell's portfolio.",
+                "An AI-powered chatbot built with React and TypeScript that allows visitors to interact with Mitchell's portfolio through natural language conversations. The assistant uses intent detection, project recognition, conversation context, and structured portfolio data to answer questions about skills, experience, projects, and technical background.",
+
+            technologies: [
+                "React",
+                "TypeScript",
+                "Vite",
+                "CSS",
+                "Node.js",
+                "Git"
+            ],
 
             audience:
-                "Marketing teams and account managers who need a simpler way to collect and organize email content."
+                "Recruiters, hiring managers, and potential clients who want an interactive way to learn about Mitchell's experience, technical skills, and development projects."
         }
     ],
 

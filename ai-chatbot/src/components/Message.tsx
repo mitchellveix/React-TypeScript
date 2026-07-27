@@ -13,7 +13,9 @@ function Message({ message }: Props) {
             {message.sender === "user" ? "You" : "Bot"}:
         </strong>{" "}
 
-        {message.text}
+        <p className="message-text">
+          {message.text}
+        </p>
 
         <small>
             {message.timestamp}

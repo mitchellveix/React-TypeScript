@@ -112,3 +112,7 @@ small {
 .message small {
   font-size: 11px;
 }
+
+.message-text {
+    white-space: pre-line;
+}
