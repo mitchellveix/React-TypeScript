@@ -9,12 +9,14 @@ import { buildSkillsResponse } from "./builders/skillsResponse";
 import { buildComparisonResponse } from "./builders/comparisonResponse";
 import { buildProjectsListResponse } from "./builders/projectsListResponse";
 import { buildTechnologyProjectsResponse } from "./builders/technologyProjectsResponse";
+import { buildCategoryProjectsResponse } from "./builders/categoryProjectsResponse";
 
 export function generateResponse(
     intent: PortfolioIntent,
     project?: string,
     projects: string[] = [],
     technology?: string,
+    category?: string,
     question = ""
 ): string {
 
@@ -34,6 +36,11 @@ export function generateResponse(
                 technology ?? ""
             );
 
+        case "categoryProjects":
+            return buildCategoryProjectsResponse(
+                category ?? ""
+            );
+            
         case "projects":
 
             if (project) {

@@ -10,6 +10,7 @@ import {
     detectProjects
 } from "./projectDetector";
 import { detectTechnology } from "./technologyDetector";
+import { detectCategory } from "./categoryDetector";
 
 
 export async function getBotReply(
@@ -35,6 +36,10 @@ export async function getBotReply(
 
             const detectedTechnology =
                 detectTechnology(question);
+
+
+            const detectedCategory =
+                detectCategory(question);
 
 
             const detectedProject =
@@ -71,6 +76,7 @@ export async function getBotReply(
                     project,
                     detectedProjects,
                     detectedTechnology,
+                    detectedCategory,
                     question
                 )
             );

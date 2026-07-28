@@ -104,6 +104,13 @@ export const portfolioData = {
                 "PostgreSQL"
             ],
 
+            categories: [
+                "Email Development",
+                "Front-End Development",
+                "Workflow Automation",
+                "Component-Based Development"
+            ],
+
             audience:
                 "Email developers and marketers who need a scalable way to build and manage reusable email templates.",
 
@@ -118,7 +125,7 @@ export const portfolioData = {
             ],
 
             evolvedFrom:
-                "Proprietary HTML Email Builder",
+                "Proprietary HTML Email Builder"
         },
 
         {
@@ -128,7 +135,16 @@ export const portfolioData = {
                 "Built an internal HTML email builder that standardized email production workflows, improved template consistency, and enabled faster campaign development.",
 
             audience:
-                "Email developers and marketing teams who need efficient tools for creating consistent email campaigns."
+                "Email developers and marketing teams who need efficient tools for creating consistent email campaigns.",
+
+            evolvedFrom:
+                "Email Materials Submission Tool",
+
+            categories: [
+                "Email Development",
+                "Workflow Automation",
+                "Internal Tools"
+            ]
         },
 
         {
@@ -138,7 +154,13 @@ export const portfolioData = {
                 "Created a tool that streamlined content collection between clients and account teams, reducing production errors and improving collaboration.",
 
             audience:
-                "Marketing teams and account managers who need a simpler way to collect and organize email content."
+                "Marketing teams and account managers who need a simpler way to collect and organize email content.",
+
+            categories: [
+                "Workflow Automation",
+                "Internal Tools",
+                "Collaboration"
+            ],
         },
 
         {
@@ -154,6 +176,13 @@ export const portfolioData = {
                 "CSS",
                 "Node.js",
                 "Git"
+            ],
+
+            categories: [
+                "Artificial Intelligence",
+                "Front-End Development",
+                "React",
+                "Developer Portfolio"
             ],
 
             audience:

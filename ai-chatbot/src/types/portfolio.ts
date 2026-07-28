@@ -8,4 +8,5 @@ export type PortfolioIntent =
     | "email"
     | "education"
     | "achievements"
+    | "categoryProjects"
     | "general";

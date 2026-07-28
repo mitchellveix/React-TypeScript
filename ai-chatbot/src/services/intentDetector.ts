@@ -31,6 +31,30 @@ export function detectIntent(
 
     /*
     -------------------------
+    Category Project Search
+    -------------------------
+    */
+
+    if (
+
+        containsAny(text, [
+            "showcase",
+            "demonstrate",
+            "related to",
+            "experience with",
+            "experience in",
+            "focused on"
+        ])
+
+    ) {
+
+        return "categoryProjects";
+
+    }
+
+
+    /*
+    -------------------------
     Technology Project Search
     -------------------------
     */
