@@ -31,6 +31,31 @@ export function detectIntent(
 
     /*
     -------------------------
+    Technology Project Search
+    -------------------------
+    */
+
+    if (
+
+        containsAny(text, [
+            "which projects use",
+            "what projects use",
+            "show projects using",
+            "projects using",
+            "built with",
+            "made with",
+            "created with"
+        ])
+
+    ) {
+
+        return "technologyProjects";
+
+    }
+
+
+    /*
+    -------------------------
     Follow-up detection
     -------------------------
     */

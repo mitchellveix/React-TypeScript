@@ -8,11 +8,13 @@ import { buildProjectResponse } from "./builders/projectResponse";
 import { buildSkillsResponse } from "./builders/skillsResponse";
 import { buildComparisonResponse } from "./builders/comparisonResponse";
 import { buildProjectsListResponse } from "./builders/projectsListResponse";
+import { buildTechnologyProjectsResponse } from "./builders/technologyProjectsResponse";
 
 export function generateResponse(
     intent: PortfolioIntent,
     project?: string,
     projects: string[] = [],
+    technology?: string,
     question = ""
 ): string {
 
@@ -26,6 +28,11 @@ export function generateResponse(
 
         case "projectList":
             return buildProjectsListResponse();
+
+        case "technologyProjects":
+            return buildTechnologyProjectsResponse(
+                technology ?? ""
+            );
 
         case "projects":
 

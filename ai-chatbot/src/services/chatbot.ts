@@ -9,6 +9,7 @@ import {
     detectProject,
     detectProjects
 } from "./projectDetector";
+import { detectTechnology } from "./technologyDetector";
 
 
 export async function getBotReply(
@@ -30,6 +31,10 @@ export async function getBotReply(
             
             const detectedProjects =
                 detectProjects(question);
+
+
+            const detectedTechnology =
+                detectTechnology(question);
 
 
             const detectedProject =
@@ -65,6 +70,7 @@ export async function getBotReply(
                     intent,
                     project,
                     detectedProjects,
+                    detectedTechnology,
                     question
                 )
             );
