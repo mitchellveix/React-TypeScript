@@ -5,9 +5,25 @@ export function findProjectEntity(
     question: string
 ): string | undefined {
 
+    const projects =
+        findProjectEntities(question);
+
+    return projects[0];
+
+}
+
+
+
+export function findProjectEntities(
+    question: string
+): string[] {
+
 
     const text =
         question.toLowerCase();
+
+
+    const matches: string[] = [];
 
 
     for (
@@ -34,12 +50,15 @@ export function findProjectEntity(
             matchedWords.length >= 2
         ) {
 
-            return project.name;
+            matches.push(
+                project.name
+            );
 
         }
 
     }
 
 
-    return undefined;
+    return matches;
+
 }

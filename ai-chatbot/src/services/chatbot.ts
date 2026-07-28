@@ -5,7 +5,10 @@ import type {
 
 import { detectIntent } from "./intentDetector";
 import { generateResponse } from "./responseGenerator";
-import { detectProject } from "./projectDetector";
+import {
+    detectProject,
+    detectProjects
+} from "./projectDetector";
 
 
 export async function getBotReply(
@@ -23,6 +26,10 @@ export async function getBotReply(
 
             const question =
                 latestMessage.content;
+
+            
+            const detectedProjects =
+                detectProjects(question);
 
 
             const detectedProject =
@@ -55,6 +62,7 @@ export async function getBotReply(
                 generateResponse(
                     intent,
                     project,
+                    detectedProjects,
                     question
                 )
             );

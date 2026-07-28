@@ -1,4 +1,7 @@
-import { findProjectEntity } from "./entityDetector";
+import {
+    findProjectEntity,
+    findProjectEntities
+} from "./entityDetector";
 
 
 export function detectProject(
@@ -6,5 +9,15 @@ export function detectProject(
 ): string | undefined {
 
     return findProjectEntity(question);
+
+}
+
+
+
+export function detectProjects(
+    question: string
+): string[] {
+
+    return findProjectEntities(question);
 
 }

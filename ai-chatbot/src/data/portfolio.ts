@@ -115,7 +115,10 @@ export const portfolioData = {
                 "Reusable content blocks",
                 "Live email previews",
                 "Production-ready HTML export"
-            ]
+            ],
+
+            evolvedFrom:
+                "Proprietary HTML Email Builder",
         },
 
         {

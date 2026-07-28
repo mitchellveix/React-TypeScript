@@ -9,6 +9,25 @@ export function detectIntent(
 
     const text = question.toLowerCase();
 
+    /*
+    -------------------------
+    Comparison detection
+    -------------------------
+    */
+
+    if (
+        containsAny(text, [
+            "compare",
+            "comparison",
+            "difference",
+            "different",
+            "versus",
+            "vs"
+        ])
+    ) {
+        return "comparison";
+    }
+
 
     /*
     -------------------------
