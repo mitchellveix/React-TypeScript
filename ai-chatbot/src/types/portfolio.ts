@@ -3,6 +3,7 @@ export type PortfolioIntent =
     | "experience"
     | "projects"
     | "comparison"
+    | "projectList"
     | "email"
     | "education"
     | "achievements"

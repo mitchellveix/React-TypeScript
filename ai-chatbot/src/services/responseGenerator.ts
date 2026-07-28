@@ -7,6 +7,7 @@ import { buildExperienceResponse } from "./builders/experienceResponse";
 import { buildProjectResponse } from "./builders/projectResponse";
 import { buildSkillsResponse } from "./builders/skillsResponse";
 import { buildComparisonResponse } from "./builders/comparisonResponse";
+import { buildProjectsListResponse } from "./builders/projectsListResponse";
 
 export function generateResponse(
     intent: PortfolioIntent,
@@ -22,6 +23,9 @@ export function generateResponse(
 
         case "experience":
             return buildExperienceResponse();
+
+        case "projectList":
+            return buildProjectsListResponse();
 
         case "projects":
 

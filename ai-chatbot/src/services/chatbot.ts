@@ -53,9 +53,11 @@ export async function getBotReply(
 
 
             const intent =
-                project
-                    ? "projects"
-                    : detectedIntent;
+                detectedIntent === "projectList"
+                    ? "projectList"
+                    : project
+                        ? "projects"
+                        : detectedIntent;
 
 
             resolve(

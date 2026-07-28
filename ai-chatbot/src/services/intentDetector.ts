@@ -147,6 +147,29 @@ export function detectIntent(
     }
 
 
+    /*
+    -------------------------
+    Project List
+    -------------------------
+    */
+
+    if (
+        containsAny(text, [
+            "what projects",
+            "which projects",
+            "list projects",
+            "show projects",
+            "projects have you built",
+            "projects have you worked on",
+            "what applications",
+            "what apps have you built",
+            "what apps have you created",
+            "applications have you created"
+        ])
+    ) {
+        return "projectList";
+    }
+
 
     /*
     -------------------------
