@@ -12,10 +12,23 @@ export interface ChatMessage {
 }
 
 
+export interface ConversationMemory {
+
+    name?: string;
+
+    favoriteLanguage?: string;
+
+    favoriteFramework?: string;
+
+}
+
+
 export interface ConversationContext {
 
     currentProject?: string;
 
     currentIntent?: string;
+
+    memory: ConversationMemory;
 
 }

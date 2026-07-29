@@ -11,6 +11,7 @@ import {
 } from "./projectDetector";
 import { detectTechnology } from "./technologyDetector";
 import { detectCategory } from "./categoryDetector";
+import { detectMemory } from "./memoryDetector";
 
 
 export async function getBotReply(
@@ -28,6 +29,37 @@ export async function getBotReply(
 
             const question =
                 latestMessage.content;
+
+            const detectedMemory =
+                detectMemory(question);
+
+
+                if (
+                    Object.keys(detectedMemory).length > 0
+                ) {
+
+                    context.memory = {
+                        ...context.memory,
+                        ...detectedMemory
+                    };
+
+
+                    resolve(
+                        generateResponse(
+                            "memorySaved",
+                            undefined,
+                            [],
+                            undefined,
+                            undefined,
+                            question,
+                            detectedMemory,
+                            true
+                        )
+                    );
+
+                    return;
+
+                }
 
             
             const detectedProjects =
@@ -69,6 +101,28 @@ export async function getBotReply(
                         ? "projects"
                         : detectedIntent;
 
+
+            if (
+                question.toLowerCase().includes("what is my")
+                ||
+                question.toLowerCase().includes("what's my")
+            ) {
+
+                resolve(
+                    generateResponse(
+                        "memoryRecall",
+                        undefined,
+                        [],
+                        undefined,
+                        undefined,
+                        question,
+                        context.memory
+                    )
+                );
+
+                return;
+
+            }
 
             resolve(
                 generateResponse(

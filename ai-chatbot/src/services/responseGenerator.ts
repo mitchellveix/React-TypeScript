@@ -1,5 +1,4 @@
 import type { PortfolioIntent } from "../types/portfolio";
-
 import { buildAchievementsResponse } from "./builders/achievementsResponse";
 import { buildEducationResponse } from "./builders/educationResponse";
 import { buildEmailResponse } from "./builders/emailResponse";
@@ -10,6 +9,10 @@ import { buildComparisonResponse } from "./builders/comparisonResponse";
 import { buildProjectsListResponse } from "./builders/projectsListResponse";
 import { buildTechnologyProjectsResponse } from "./builders/technologyProjectsResponse";
 import { buildCategoryProjectsResponse } from "./builders/categoryProjectsResponse";
+import {
+    buildMemorySavedResponse,
+    buildMemoryRecallResponse
+} from "./builders/memoryResponse";
 
 export function generateResponse(
     intent: PortfolioIntent,
@@ -17,11 +20,27 @@ export function generateResponse(
     projects: string[] = [],
     technology?: string,
     category?: string,
-    question = ""
+    question = "",
+    memory?: any,
+    savedMemory?: boolean
 ): string {
 
     switch (intent) {
 
+        case "memorySaved":
+
+            return buildMemorySavedResponse(
+                memory
+            );
+
+
+        case "memoryRecall":
+
+            return buildMemoryRecallResponse(
+                memory,
+                question
+            );
+            
         case "skills":
             return buildSkillsResponse();
 
