@@ -8,6 +8,7 @@ import type {
 
 import { getBotReply } from "../services/chatbot";
 import Message from "./Message";
+import { loadMemory } from "../services/memoryStorage";
 
 function ChatWindow() {
 
@@ -35,7 +36,9 @@ function ChatWindow() {
   ]);
 
   const [context, setContext] =
-    useState<ConversationContext>({});
+    useState<ConversationContext>({
+        memory: loadMemory()
+    });
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
@@ -63,9 +66,10 @@ function ChatWindow() {
 
     if (detectedProject) {
 
-        setContext({
+        setContext((currentContext) => ({
+            ...currentContext,
             currentProject: detectedProject
-        });
+        }));
 
     }
 

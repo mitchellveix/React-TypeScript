@@ -21,8 +21,7 @@ export function generateResponse(
     technology?: string,
     category?: string,
     question = "",
-    memory?: any,
-    savedMemory?: boolean
+    memory?: any
 ): string {
 
     switch (intent) {

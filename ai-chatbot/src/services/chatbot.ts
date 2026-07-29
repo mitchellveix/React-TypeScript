@@ -12,6 +12,7 @@ import {
 import { detectTechnology } from "./technologyDetector";
 import { detectCategory } from "./categoryDetector";
 import { detectMemory } from "./memoryDetector";
+import { saveMemory } from "./memoryStorage";
 
 
 export async function getBotReply(
@@ -44,6 +45,11 @@ export async function getBotReply(
                     };
 
 
+                    saveMemory(
+                        context.memory
+                    );
+
+
                     resolve(
                         generateResponse(
                             "memorySaved",
@@ -52,8 +58,7 @@ export async function getBotReply(
                             undefined,
                             undefined,
                             question,
-                            detectedMemory,
-                            true
+                            detectedMemory
                         )
                     );
 
