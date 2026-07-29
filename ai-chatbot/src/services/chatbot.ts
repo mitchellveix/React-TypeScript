@@ -58,7 +58,8 @@ export async function getBotReply(
                             undefined,
                             undefined,
                             question,
-                            detectedMemory
+                            detectedMemory,
+                            context
                         )
                     );
 
@@ -136,7 +137,9 @@ export async function getBotReply(
                     detectedProjects,
                     detectedTechnology,
                     detectedCategory,
-                    question
+                    question,
+                    undefined,
+                    context
                 )
             );
 

@@ -13,6 +13,8 @@ import {
     buildMemorySavedResponse,
     buildMemoryRecallResponse
 } from "./builders/memoryResponse";
+import type { ConversationContext } from "../types/chat";
+
 
 export function generateResponse(
     intent: PortfolioIntent,
@@ -21,7 +23,8 @@ export function generateResponse(
     technology?: string,
     category?: string,
     question = "",
-    memory?: any
+    memory?: any,
+    context?: ConversationContext
 ): string {
 
     switch (intent) {
@@ -50,6 +53,16 @@ export function generateResponse(
             return buildProjectsListResponse();
 
         case "technologyProjects":
+
+            if (context?.currentProject) {
+
+                return `
+                For ${context.currentProject}, 
+                the main technologies used were React, TypeScript, Vite, and Cloudflare Workers.
+                `;
+
+            }
+
             return buildTechnologyProjectsResponse(
                 technology ?? ""
             );

@@ -64,12 +64,17 @@ function ChatWindow() {
             : undefined;
 
 
-    if (detectedProject) {
+        const updatedContext: ConversationContext = detectedProject
+            ? {
+                ...context,
+                currentProject: detectedProject
+            }
+            : context;
 
-        setContext((currentContext) => ({
-            ...currentContext,
-            currentProject: detectedProject
-        }));
+
+        if (detectedProject) {
+
+            setContext(updatedContext);
 
     }
 
@@ -106,7 +111,7 @@ function ChatWindow() {
                 ...conversation,
                 userChatMessage
             ],
-            context
+            updatedContext
         );
 
         const botMessage: MessageType = {
